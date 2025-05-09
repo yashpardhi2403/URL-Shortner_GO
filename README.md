@@ -5,6 +5,8 @@ This is a basic project built using the Go Language. This project shortens your 
 
 This project provides a basic URL-shortening service implemented in Go. It allows users to shorten long URLs into more manageable and shareable links. The service also includes a redirect feature to redirect users from the shortened URL to the original long URL.
 
+![image](https://github.com/user-attachments/assets/0ffaa3e7-055f-4555-ab9a-e57b9437ccc2)
+
 ## Installation
 
 To use the URL shortener, you need to have Go installed on your system. You can download and install Go from the [official Go website](https://go.dev/).
