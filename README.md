@@ -14,7 +14,7 @@ To use the URL shortener, you need to have Go installed on your system. You can 
 Clone the repository to your local machine:
 
 ```sh
-git clone https://github.com/Prince-1501/url-shortner.git
+git clone https://github.com/yashpardhi2403/URL-Shortner_GO.git
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ The response will contain a JSON object with the shortened URL:
 
 ```json
 {
-    "short_url": "https://www.linkedin.com/in/iamprince/"
+    "short_url": "https://www.linkedin.com/in/yash-pardhi/"
 }
 ```
 
@@ -50,7 +50,7 @@ The response will contain a JSON object with the shortened URL:
 To redirect to the original URL, visit the shortened URL in your browser or send a GET request to the `/redirect/{id}` endpoint, where `{id}` is the shortened URL ID:
 
 ```sh
-curl http://localhost:8080/redirect/abcdef
+curl http:http://localhost:3000/redirect/6d745812
 ```
 
 This will redirect you to the original URL associated with the shortened URL.
