@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Go URL Shortener</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f4f8;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>URL Shortener</h1>
+    <p>Enter a long URL to get a shortened version</p>
+    <input type="text" id="urlInput" placeholder="https://example.com" />
+    <button onclick="shortenURL()">Shorten</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    async function shortenURL() {
+      const url = document.getElementById("urlInput").value;
+      const result = document.getElementById("result");
+
+      if (!url.trim()) {
+        result.textContent = "Please enter a valid URL.";
+        return;
+      }
+
+      try {
+        const response = await fetch("/shorten", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url }),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          result.textContent = `Error: ${errorText}`;
+          return;
+        }
+
+        const data = await response.json();
+        result.innerHTML = `Shortened URL: <a href="/redirect/${data.short_url}" target="_blank">http://localhost:3000/redirect/${data.short_url}</a>`;
+      } catch (err) {
+        result.textContent = "Error occurred while shortening the URL.";
+      }
+    }
+  </script>
+</body>
+</html>
+        
